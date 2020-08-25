@@ -8,6 +8,10 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Sant01.Data;
+using Microsoft.EntityFrameworkCore;
+using Sant01.Repository;
+using Sant01.Service;
 
 namespace Sant01
 {
@@ -24,6 +28,14 @@ namespace Sant01
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            var ConnectionString = Configuration.GetConnectionString("default");
+            services.AddDbContext<EmployeeContext>(options =>
+                    options.UseSqlServer(ConnectionString));
+
+            services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+
+            services.AddScoped<IEmployeeService, EmployeeService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -41,6 +53,7 @@ namespace Sant01
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseStatusCodePages();
 
             app.UseRouting();
 

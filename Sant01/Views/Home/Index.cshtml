@@ -4,5 +4,18 @@
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <p>This is small MVC task web app. It is focused on one entity functionality. Entity is called employee, you can reach it thorught <a asp-controller="Employee" asp-action="Index">/employee</a> endpoint.</p>
+    <h3>Employee performs these crud operations:</h3>
+    <ul>
+        <li class="list-group-item">[GET] /employee : gets all employees</li>
+        <li class="list-group-item">[GET] /employee/details/{id} : gets employee by its id</li>
+        <li class="list-group-item">[GET] /employee/actives : gets all currently active employees</li>
+        <li class="list-group-item">[GET] /employee/inactives : gets all inactive employees</li>
+        <li class="list-group-item">[GET] /employee/delete/{id} : opens additional delete window</li>
+        <li class="list-group-item">[POST] /employee/deleteconfirmed/id : deletes employee from the system</li>
+        <li class="list-group-item">[GET] /employee/edit/{id} : opens new page to edit employee</li>
+        <li class="list-group-item">[POST] /employee/edit/{id} : updates employee</li>
+        <li class="list-group-item">[GET] /employee/create/{id} : opens new page to add new employee to the system</li>
+        <li class="list-group-item">[POST] /employee/create/{id} : creates employee</li>
+    </ul>
 </div>

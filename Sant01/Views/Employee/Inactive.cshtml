@@ -1,0 +1,75 @@
+﻿@model IEnumerable<Sant01.Models.Employee>
+@{
+    ViewData["Title"] = "Inactive employees";
+}
+
+<div class="row d-flex justify-content-around">
+    <a class="col-xs-12 col-md-5 my-3 btn btn-outline-dark rounded display-4 py-4" asp-controller="Employee" asp-action="Active">Active employee list</></a>
+    <a class="col-xs-12 col-md-5 my-3 btn btn-outline-dark rounded display-4 py-4" asp-controller="Employee" asp-action="Inactive">Inactive employee list</a>
+    <a class="col-xs-12 col-md-5 my-3 btn btn-outline-primary rounded display-4 py-4" asp-controller="Employee" asp-action="Create">Add new employee</a>
+</div>
+
+<div>
+    <h3 class="text-center my-3">Inactive employee list</h3>
+    <table class="table table-striped">
+        <thead class="thead-dark text-light">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Surename)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DOB)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PersonIdentificationCode)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Address)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Status)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Surename)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DOB)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PersonIdentificationCode)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Address)
+                    </td>
+                    <td>
+                            <p>Inactive</p>
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
