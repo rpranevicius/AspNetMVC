@@ -8,7 +8,7 @@ namespace Sant01.Service
 {
     public interface IEmployeeService
     {
-        IEnumerable<Employee> GetActiveEmployees();
-        IEnumerable<Employee> GetInactiveEmployees();
+        Task <IEnumerable<Employee>> GetActiveEmployees();
+        Task <IEnumerable<Employee>> GetInactiveEmployees();
     }
 }

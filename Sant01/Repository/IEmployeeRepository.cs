@@ -8,10 +8,10 @@ namespace Sant01.Repository
 {
     public interface IEmployeeRepository
     {
-        Employee GetById(int id);
-        IEnumerable<Employee> GetEmployees();
-        void Add(Employee employee);
-        void Update(Employee employee);
-        void Delete(int id);
+        Task<Employee> GetById(int id);
+        Task<IEnumerable<Employee>> GetEmployees();
+        Task Add(Employee employee);
+        Task Update(Employee employee);
+        Task Delete(int id);
     }
 }

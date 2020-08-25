@@ -17,21 +17,19 @@ namespace Sant01.Service
             _employeeRepository = employeeRepository;
         }
 
-        public IEnumerable<Employee> GetActiveEmployees()
+        public async Task<IEnumerable<Employee>> GetActiveEmployees()
         {
-            var employees = _employeeRepository.GetEmployees()
-                                                .Where(x => x.Status == EmployeeStatus.Active).ToList() ;
-
-            return employees;
+            var employees = await _employeeRepository.GetEmployees();
+            return employees.Where(x => x.Status == EmployeeStatus.Active).ToList();
         }
 
 
-        public IEnumerable<Employee> GetInactiveEmployees()
+        public async Task<IEnumerable<Employee>> GetInactiveEmployees()
         {
-            var employees = _employeeRepository.GetEmployees()
-                                                .Where(x => x.Status == EmployeeStatus.Inactive).ToList();
+            var employees = await _employeeRepository.GetEmployees();
+                                                
 
-            return employees;
+            return employees.Where(x => x.Status == EmployeeStatus.Inactive).ToList();
         }
     }
 }

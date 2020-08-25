@@ -17,35 +17,35 @@ namespace Sant01.Repository
             _context = employeeContext;
         }
 
-        public void Add(Employee employee)
+        public async Task Add(Employee employee)
         {
             _context.Employees.Add(employee);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void Delete(int id)
+        public async Task Delete(int id)
         {
             var employee = _context
                             .Employees
                             .FirstOrDefault(x => x.Id == id);
             _context.Remove(employee);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public Employee GetById(int id)
+        public async Task<Employee> GetById(int id)
         {
-            return _context.Employees.FirstOrDefault(x => x.Id == id);
+            return await _context.Employees.FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public IEnumerable<Employee> GetEmployees()
+        public async Task<IEnumerable<Employee>> GetEmployees()
         {
-            return _context.Employees.ToList();
+            return await _context.Employees.ToListAsync();
         }
 
-        public void Update(Employee employee)
+        public async Task Update(Employee employee)
         {
             _context.Entry(employee).State = EntityState.Modified;
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
     }
 }

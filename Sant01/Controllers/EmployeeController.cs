@@ -23,29 +23,29 @@ namespace Sant01.Controllers
         }
 
         // GET: All employees
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            return View(_employeeRepository.GetEmployees());
+            return View( await _employeeRepository.GetEmployees());
         }
 
         // GET: Active employees
-        public ActionResult Active()
+        public async Task<ActionResult> Active()
         {
-            return View(_employeeService.GetActiveEmployees());
+            return View(await _employeeService.GetActiveEmployees());
         }
 
         // GET: Inactive employees
-        public ActionResult Inactive()
+        public async Task<ActionResult> Inactive()
         {
-            return View(_employeeService.GetInactiveEmployees());
+            return View(await _employeeService.GetInactiveEmployees());
         }
 
         // GET: Employee/id
         [HttpGet]
-        public ActionResult Details(int id)
+        public async Task<ActionResult> Details(int id)
         {
 
-            var employee = _employeeRepository.GetById(id);
+            var employee = await _employeeRepository.GetById(id);
 
             if (employee == null)
             {
@@ -65,11 +65,11 @@ namespace Sant01.Controllers
         // POST: Employee/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind("Id,Name,Surename,DOB,Address,PersonIdentificationCode,Status")] Employee employee)
+        public async Task<ActionResult> Create([Bind("Id,Name,Surename,DOB,Address,PersonIdentificationCode,Status")] Employee employee)
         {
             if (ModelState.IsValid)
             {
-                _employeeRepository.Add(employee);
+                await _employeeRepository.Add(employee);
                 return RedirectToAction("Index");
             }
             return View(employee);
@@ -77,9 +77,9 @@ namespace Sant01.Controllers
 
         // GET: Employee/Edit/5
         [HttpGet]
-        public ActionResult Edit(int id)
+        public async Task<ActionResult> Edit(int id)
         {
-            var employee = _employeeRepository.GetById(id);
+            var employee = await _employeeRepository.GetById(id);
 
             if(employee == null)
             {
@@ -92,7 +92,7 @@ namespace Sant01.Controllers
         // POST: Employee/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, [Bind("Id,Name,Surename,DOB, PersonIdentificationCode, Address, Status")] Employee employee)
+        public async Task<ActionResult> Edit(int id, [Bind("Id,Name,Surename,DOB, PersonIdentificationCode, Address, Status")] Employee employee)
         {
             if (id != employee.Id)
             {
@@ -102,7 +102,7 @@ namespace Sant01.Controllers
             if (ModelState.IsValid)
             {
 
-                    _employeeRepository.Update(employee);
+                   await  _employeeRepository.Update(employee);
 
                 return RedirectToAction(nameof(Index));
             }
@@ -111,9 +111,9 @@ namespace Sant01.Controllers
 
         // GET: Employee/Delete/5
         [HttpGet]
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(int id)
         {
-            var employee = _employeeRepository.GetById(id);
+            var employee = await _employeeRepository.GetById(id);
             if(employee == null)
             {
                 return NotFound();
@@ -125,9 +125,9 @@ namespace Sant01.Controllers
         // POST: Employee/DeleteConfirmed/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            _employeeRepository.Delete(id);
+            await _employeeRepository.Delete(id);
             return RedirectToAction("Index");
         }
     }
