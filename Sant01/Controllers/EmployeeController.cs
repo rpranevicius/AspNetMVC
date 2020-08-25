@@ -39,18 +39,6 @@ namespace Sant01.Controllers
             return View( employees);
         }
 
-        // GET: Active employees
-        public async Task<ActionResult> Active()
-        {
-            return View(await _employeeService.GetActiveEmployees());
-        }
-
-        // GET: Inactive employees
-        public async Task<ActionResult> Inactive()
-        {
-            return View(await _employeeService.GetInactiveEmployees());
-        }
-
         // GET: Employee/id
         [HttpGet]
         public async Task<ActionResult> Details(int id)
