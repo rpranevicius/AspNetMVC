@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Sant01.Data.Enum;
 using Sant01.Models;
 using Sant01.Repository;
 using Sant01.Service;
@@ -23,9 +24,19 @@ namespace Sant01.Controllers
         }
 
         // GET: All employees
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(string statusFilter)
         {
-            return View( await _employeeRepository.GetEmployees());
+            ViewData["StatusFilter"] = statusFilter;
+
+            var employees = await _employeeRepository.GetEmployees();
+
+            if (!String.IsNullOrEmpty(statusFilter))
+            {
+                var byteValue = Convert.ToByte(statusFilter);
+                employees = employees.Where(e => e.Status == (EmployeeStatus)byteValue);
+            }
+
+            return View( employees);
         }
 
         // GET: Active employees
