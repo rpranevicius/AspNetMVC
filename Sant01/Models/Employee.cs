@@ -18,6 +18,7 @@ namespace Sant01.Models
         public string Surename { get; set; }
 
         [Display(Name = "Person Identification Code")]
+        [RegularExpression(@"[3-6][0-9]{2}[0,1][0-9][0-9]{2}[0-9]{4}", ErrorMessage = "Characters are not allowed.")]
         public long PersonIdentificationCode { get; set; }
 
         [Display(Name = "Date of birth")]
