@@ -1,0 +1,71 @@
+﻿@model Sant01.Models.Employee
+
+@{
+}
+
+<table class="table table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+        <td>
+            @Html.DisplayFor(model => model.Id)
+        </td>
+    </tr>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <td>
+            @Html.DisplayFor(model => model.Name)
+        </td>
+    </tr>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Surename)
+        </th>
+        <td>
+            @Html.DisplayFor(model => model.Surename)
+        </td>
+    </tr>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DOB)
+        </th>
+        <td>
+            @Html.DisplayFor(model => model.DOB)
+        </td>
+    </tr>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <td>
+            @Html.DisplayFor(model => model.Address)
+        </td>
+    </tr>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PersonIdentificationCode)
+        </th>
+        <td>
+            @Html.DisplayFor(model => model.PersonIdentificationCode)
+        </td>
+    </tr>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <td>
+            @if (Model.Status == Sant01.Data.Enum.EmployeeStatus.Active)
+            {
+                <p>Active</p>
+            }
+            else
+            {
+                <p>Inactive</p>
+            }
+        </td>
+    </tr>
+
+</table>
